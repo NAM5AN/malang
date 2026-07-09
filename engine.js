@@ -1415,13 +1415,14 @@
     // 탄산 기포: 터치 지점(코어 상대좌표)에서 생성
     function spawnFizz(x, y, count) {
         const r = getRadius();
+        const big = getSpec().bubbleBig; // 왕방울 기포: 크고 천천히 (비눗방울 계열)
         for (let i = 0; i < count; i++) {
             if (fizzBubbles.length > 40) fizzBubbles.shift();
             fizzBubbles.push({
                 ox: (x - core.x) / r + (Math.random() - 0.5) * 0.12,
                 oy: (y - core.y) / r + (Math.random() - 0.5) * 0.08,
-                r: 0.025 + Math.random() * 0.035,
-                sp: 0.005 + Math.random() * 0.007,
+                r: (0.025 + Math.random() * 0.035) * (big ? 2.4 : 1),
+                sp: (0.005 + Math.random() * 0.007) * (big ? 0.6 : 1),
                 wp: Math.random() * 6
             });
         }
